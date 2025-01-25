@@ -16,12 +16,6 @@ import GameUI from "./Utils/GameUI";
 	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath, player);
 	// Crea l'interfaccia utente
 	const level = new Level1(app, player);
-
-
-
-	// Aggiorna le vite
-
-
 	// Aggiunge un oggetto all'inventario
 	gameUI.addItemToInventory("/assets/bunny.png", 0);
 
