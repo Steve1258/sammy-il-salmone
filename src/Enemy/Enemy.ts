@@ -53,7 +53,6 @@ class Enemy extends GenericObject {
             );
             console.log("Distanza dal giocatore: ", distance);
             if (distance <= this.chaseDistance) {
-                console.log("Chasing player!");
                 this.moveTowardsPlayer(playerX, playerY);
             }
         });
