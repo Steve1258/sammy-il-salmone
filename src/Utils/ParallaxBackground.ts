@@ -23,7 +23,7 @@ class ParallaxBackground {
                     sprite.width = this.app.screen.width;
                     sprite.height = this.app.screen.height;
                     sprite.position.set(col * this.app.screen.width, row * this.app.screen.height);
-
+                    sprite.zIndex = -1;
                     this.layers[i].push(sprite);
                     this.app.stage.addChild(sprite);
                 }

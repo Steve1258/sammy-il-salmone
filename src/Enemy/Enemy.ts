@@ -38,7 +38,7 @@ class Enemy extends GenericObject {
      * Controlla se il nemico è abbastanza vicino al giocatore per iniziare l'inseguimento.
      */
     public chasePlayer(): void {
-        this.app.ticker.add((time: Ticker) => {
+        this.app.ticker.add(() => {
             if (!this.spriteEnemy) {
                 console.error("Nemico non inizializzato! chasePlayer");
                 return;
@@ -54,6 +54,9 @@ class Enemy extends GenericObject {
 
             if (distance <= this.chaseDistance) {
                 this.moveTowardsPlayer(playerX, playerY);
+            }
+            if (Math.round(distance) <= 100) {
+                this.player.hit();
             }
         });
 
