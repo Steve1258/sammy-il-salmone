@@ -14,7 +14,7 @@ class Level1 extends BaseLevel {
 
         this.levelMatrix = [
             ["", "", "E", "", ""],
-            ["", "", "", "E", ""],
+            ["", "", "", "Enemy2", ""],
             ["", "C", "", "C", ""],
         ];
 
@@ -31,6 +31,14 @@ class Level1 extends BaseLevel {
                 width: 100,
                 height: 100,
                 texturePath: "/assets/bunny.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy2": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/shark.png",
                 object: new Enemy(player, app)
             },
             "C": {

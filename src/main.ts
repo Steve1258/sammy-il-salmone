@@ -8,7 +8,7 @@ import Level1 from "./Levels/ListLevels/Level1";
 	document.getElementById("pixi-container")!.appendChild(app.canvas);
 
 
-	const player = new Player("/assets/bunny.png", app);
+	const player = new Player("/assets/character.png", app);
 	const level = new Level1(app, player);
 
 	app.ticker.add((time: Ticker) => {
