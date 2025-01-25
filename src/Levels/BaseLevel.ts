@@ -20,19 +20,51 @@ class BaseLevel {
         this.platforms = [];
     }
 
-    // Metodo per aggiungere piattaforme
-    protected async addLevelSprite(levelsSprite: LevelSprite[]) {
-        let texture: Texture;
-        let sprite: Sprite;
-        levelsSprite.forEach(async (level) => {
-            texture = await Assets.load(level.texturePath);
-            sprite = new Sprite(texture);
-            sprite.anchor.set(0.5);
-            sprite.position.set(level.x, level.y);
-            this.app.stage.addChild(sprite);
-            level.object.handleObject({ sprite });
-        });
+    protected async generateLevelFromMatrix(matrix: string[][], objectMapping: Record<string, LevelSprite>) {
+        const tileSize = 200; // Dimensione di ciascun "blocco" della matrice
+        const lastRowIndex = matrix.length - 1; // Trova l'ultima riga della matrice
 
+        for (let row = 0; row < matrix.length; row++) {
+            for (let col = 0; col < matrix[row].length; col++) {
+                const symbol = matrix[row][col];
+
+                if (symbol && objectMapping[symbol]) {
+                    const objectConfig = objectMapping[symbol];
+
+                    const texture = await Assets.load(objectConfig.texturePath);
+                    const sprite = new Sprite(texture);
+                    sprite.zIndex = 1;
+
+                    sprite.width = objectConfig.width;
+                    sprite.height = objectConfig.height;
+
+                    // Se l'oggetto è nell'ultima riga, posizionalo in fondo alla mappa
+                    let posX = col * tileSize;
+                    let posY = row === lastRowIndex
+                        ? this.app.screen.height - objectConfig.height / 2  // Posiziona in basso
+                        : row * tileSize;  // Posiziona normalmente
+
+                    sprite.position.set(posX, posY);
+                    sprite.anchor.set(0.5);
+
+                    this.app.stage.addChild(sprite);
+
+                    if (objectConfig.object) {
+                        objectConfig.object.handleObject({ sprite });
+                    }
+
+                    // Aggiungi l'oggetto alla lista delle piattaforme se necessario
+                    if (symbol === "P") {
+                        this.platforms.push({
+                            x: posX,
+                            y: posY,
+                            width: objectConfig.width,
+                            height: objectConfig.height,
+                        });
+                    }
+                }
+            }
+        }
     }
 
     // Controllo collisioni generiche

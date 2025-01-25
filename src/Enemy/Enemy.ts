@@ -51,7 +51,7 @@ class Enemy extends GenericObject {
             const distance = Math.sqrt(
                 Math.pow(playerX - enemyX, 2) + Math.pow(playerY - enemyY, 2)
             );
-            console.log("Distanza dal giocatore: ", distance);
+
             if (distance <= this.chaseDistance) {
                 this.moveTowardsPlayer(playerX, playerY);
             }
