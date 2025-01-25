@@ -12,7 +12,7 @@ import GameUI from "./Utils/GameUI";
 	const player = new Player("/assets/character.png", app);
 	const level = new Level1(app, player);
 	const lifeTexturePath = "/assets/UI/heart.png";
-	const inventoryTexturePath = "/assets/UI/slot.png";
+	const inventoryTexturePath = "/assets/bunny.png";
 
 	// Crea l'interfaccia utente
 	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath);
@@ -21,7 +21,7 @@ import GameUI from "./Utils/GameUI";
 	gameUI.updateLives(2);
 
 	// Aggiunge un oggetto all'inventario
-	gameUI.addItemToInventory("/assets/UI/item_sword.png", 0);
+	gameUI.addItemToInventory("/assets/bunny.png", 0);
 
 	app.ticker.add((time: Ticker) => {
 		player.update(time.deltaTime);

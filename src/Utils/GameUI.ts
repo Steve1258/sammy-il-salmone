@@ -52,7 +52,15 @@ class GameUI {
         for (let i = 0; i < this.maxLives; i++) {
             const lifeSprite = new Sprite(texture);
             lifeSprite.anchor.set(1, 0); // Ancoraggio in alto a destra
+
+            // Imposta manualmente la dimensione dello sprite
+            lifeSprite.width = 40;  // Imposta la larghezza desiderata
+            lifeSprite.height = 40; // Imposta l'altezza desiderata
+
+            // Posizionamento considerando la larghezza impostata
             lifeSprite.position.set(this.app.screen.width - (i * (lifeSprite.width + 10)) - 20, 20);
+
+            lifeSprite.zIndex = 1;
             this.uiContainer.addChild(lifeSprite);
             this.lifeSprites.push(lifeSprite);
         }
@@ -81,7 +89,7 @@ class GameUI {
      */
     public updateLives(lives: number) {
         for (let i = 0; i < this.maxLives; i++) {
-            this.lifeSprites[i].visible = i < lives;
+            // this.lifeSprites[i].visible = i < lives;
         }
     }
 
@@ -91,10 +99,10 @@ class GameUI {
      * @param {number} slotIndex - Indice dello slot dell'inventario (0-based).
      */
     public async addItemToInventory(itemTexturePath: string, slotIndex: number) {
-        if (slotIndex < 0 || slotIndex >= this.inventorySize) return;
+        // if (slotIndex < 0 || slotIndex >= this.inventorySize) return;
 
-        const texture = await Assets.load(itemTexturePath);
-        this.inventorySprites[slotIndex].texture = texture;
+        // const texture = await Assets.load(itemTexturePath);
+        // this.inventorySprites[slotIndex].texture = texture;
     }
 
     /**
