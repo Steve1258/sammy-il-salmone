@@ -75,11 +75,11 @@ class Player {
 
 
     /**
-  * Retrieves the player's current X-coordinate position.
-  * 
-  * @returns {number} The X position of the player sprite. 
-  *                   Returns `0` if the sprite is not initialized.
-  */
+     * Retrieves the player's current X-coordinate position.
+     * 
+     * @returns {number} The X position of the player sprite. 
+     *                   Returns `0` if the sprite is not initialized.
+     */
     public getX(): number {
         return this.sprite ? this.sprite.x : 0;
     }
