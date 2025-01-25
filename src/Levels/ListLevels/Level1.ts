@@ -16,8 +16,8 @@ class Level1 extends BaseLevel {
                 width: 200,
                 height: 50,
                 texturePath: "/assets/bunny.png",
-                object: new Enemy(),
-            }
+                object: new Enemy(player, app),
+            },
         ];
         this.addLevelSprite(this.platforms);
     }

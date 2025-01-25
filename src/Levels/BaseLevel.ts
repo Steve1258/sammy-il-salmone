@@ -30,9 +30,9 @@ class BaseLevel {
             sprite.anchor.set(0.5);
             sprite.position.set(level.x, level.y);
             this.app.stage.addChild(sprite);
-            level.object.handleObject();
+            level.object.handleObject({ sprite });
         });
-            
+
     }
 
     // Controllo collisioni generiche
