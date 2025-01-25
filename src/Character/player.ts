@@ -24,8 +24,8 @@ class Player {
         this.speed = 5;
         this.velocity = { x: 0, y: 0 };
         this.gravity = 0.5;
-        this.floatingAmplitude = 2;
-        this.floatingSpeed = 0.05;
+        this.floatingAmplitude = 10;
+        this.floatingSpeed = 0.1;
         this.time = 0;
         this.init(texturePath);
         this.setupKeyboardControls();
@@ -104,7 +104,6 @@ class Player {
             this.time += this.floatingSpeed;
             this.sprite.x -= Math.sin(this.time) * this.floatingAmplitude;
         }
-
         this.sprite.x += this.velocity.x * delta;
         this.sprite.y += this.velocity.y * delta;
     }
