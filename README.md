@@ -1,1 +1,0 @@
-# sammy-il-salmone
