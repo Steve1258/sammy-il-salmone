@@ -41,6 +41,7 @@ class Player {
         this.sprite.anchor.set(0.5);
         this.sprite.position.set(this.app.screen.width / 2, this.app.screen.height / 2);
         this.app.stage.addChild(this.sprite);
+        this.sprite.zIndex = 1;
     }
 
     /**
@@ -138,6 +139,13 @@ class Player {
         }
         this.sprite.x += this.velocity.x * delta;
         this.sprite.y += this.velocity.y * delta;
+        // Simulazione della "camera" che segue il player
+        const screenBottom = this.app.screen.height - this.sprite.height / 2;
+        if (this.sprite.y > screenBottom) {
+            this.sprite.y = screenBottom;
+            this.velocity.y = 0; // Ferma il movimento verticale se tocca il bordo inferiore
+        }
+        this.app.stage.pivot.set(this.sprite.x - this.app.screen.width / 2, 0);
     }
 }
 

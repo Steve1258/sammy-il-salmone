@@ -3,23 +3,47 @@ import BaseLevel from "../BaseLevel";
 import LevelSprite from "../../Interfaces/LevelSprite";
 import Enemy from "../../Enemy/Enemy";
 import Player from "../../Character/Player";
+import ParallaxBackground from "../../Utils/ParallaxBackground";
 
 class Level1 extends BaseLevel {
-    public platforms: LevelSprite[];
+    public platforms: LevelSprite[] = [];
+    private levelMatrix: string[][];
 
     constructor(app: Application, player: Player) {
         super(app);
-        this.platforms = [
-            {
-                x: 100,
-                y: 400,
-                width: 200,
-                height: 50,
-                texturePath: "/assets/bunny.png",
-                object: new Enemy(player, app),
-            },
+
+        this.levelMatrix = [
+            ["", "", "E", "", ""],
+            ["", "", "", "E", ""],
+            ["", "C", "", "C", ""],
         ];
-        this.addLevelSprite(this.platforms);
+
+        // Specifica una griglia di 1x5 sfondi consecutivi
+        new ParallaxBackground(app, [
+            "/assets/background_layer1.jpg",
+        ], { rows: 1, cols: 5 });
+
+        // Definizione degli oggetti con il tipo LevelSprite
+        const objectTypes: Record<string, LevelSprite> = {
+            "E": {
+                x: 300,
+                y: 200,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/bunny.png",
+                object: new Enemy(player, app)
+            },
+            "C": {
+                x: 500,
+                y: 300,
+                width: 150,
+                height: 350,
+                texturePath: "/assets/Colonne.png",
+            }
+        };
+
+        // Genera il livello dalla matrice
+        this.generateLevelFromMatrix(this.levelMatrix, objectTypes);
     }
 }
 
