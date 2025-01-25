@@ -30,7 +30,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 100,
                 height: 100,
-                texturePath: "/assets/bunny.png",
+                texturePath: "/assets/Enemy/shark.png",
                 object: new Enemy(player, app)
             },
             "Enemy2": {
