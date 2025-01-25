@@ -55,7 +55,7 @@ class Enemy extends GenericObject {
             if (distance <= this.chaseDistance) {
                 this.moveTowardsPlayer(playerX, playerY);
             }
-            if (distance <= 0) {
+            if (Math.round(distance) <= 0) {
                 this.player.hit();
             }
         });

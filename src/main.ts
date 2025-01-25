@@ -9,22 +9,25 @@ import GameUI from "./Utils/GameUI";
 	document.getElementById("pixi-container")!.appendChild(app.canvas);
 
 
-	const player = new Player("/assets/character.png", app);
-	const level = new Level1(app, player);
+
 	const lifeTexturePath = "/assets/UI/heart.png";
 	const inventoryTexturePath = "/assets/bunny.png";
-
+	const player = new Player("/assets/character.png", app,);
+	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath, player);
 	// Crea l'interfaccia utente
-	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath);
+	const level = new Level1(app, player);
+
+
 
 	// Aggiorna le vite
-	gameUI.updateLives(2);
+
 
 	// Aggiunge un oggetto all'inventario
 	gameUI.addItemToInventory("/assets/bunny.png", 0);
 
 	app.ticker.add((time: Ticker) => {
 		player.update(time.deltaTime);
+		gameUI.updateLives(player.life);
 	});
 
 })();

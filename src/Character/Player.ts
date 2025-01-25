@@ -3,9 +3,19 @@ import Bullet from "../Bullet/Bullet";
 
 class Player {
     /**
+     * Flag to track if the player is currently invulnerable.
+     */
+    private isInvulnerable: boolean = false;
+
+    /**
+     * Duration of invulnerability in milliseconds.
+     */
+    private invulnerabilityDuration: number = 2000; // 2 seconds
+
+    /**
      * Number of lives the player has.
      */
-    private life: number = 3;
+    public life: number = 3;
 
     /**
      * actual bullet instance
@@ -51,6 +61,8 @@ class Player {
      * Reference to the PIXI application.
      */
     private app: Application;
+
+
 
     /**
      * Creates an instance of Player.
@@ -178,16 +190,56 @@ class Player {
         }
     }
 
+
+
     /**
-     * Reduces the player's life count and ends the game if the life count reaches zero.
-     * @returns {void}
+     * Handles when the player gets hit by an enemy or obstacle.
+     * Reduces the player's life count and starts an invulnerability period.
      */
     public hit(): void {
-        this.life--;
-        if (this.life <= 0) {
-            console.log("Game Over");
+        if (this.isInvulnerable) {
+            console.log("Player is invulnerable, hit ignored.");
+            return;
+        }
+
+        if (this.life > 0) {
+            this.life--;
+            console.log(`Player hit! Lives left: ${this.life}`);
+
+            if (this.life <= 0) {
+                this.gameOver();
+            } else {
+                this.startInvulnerability();
+            }
         }
     }
+
+    /**
+     * Handles game over when player's lives reach zero.
+     */
+    private gameOver(): void {
+        console.log("Game Over!");
+        this.sprite!.tint = 0xff0000; // Change player color to indicate game over
+        this.velocity = { x: 0, y: 0 }; // Stop movement
+    }
+
+    /**
+     * Starts a brief invulnerability period after the player is hit.
+     */
+    private startInvulnerability(): void {
+        this.isInvulnerable = true;
+        console.log("Player is now invulnerable.");
+
+        // Optionally change the player's appearance to show invulnerability
+        this.sprite!.alpha = 0.5; // Make the player transparent
+
+        setTimeout(() => {
+            this.isInvulnerable = false;
+            this.sprite!.alpha = 1; // Restore normal appearance
+            console.log("Player is no longer invulnerable.");
+        }, this.invulnerabilityDuration);
+    }
+
 
     /**
      * Updates the player's position and applies gravity and floating effect.

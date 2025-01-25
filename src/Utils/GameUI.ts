@@ -1,4 +1,5 @@
-import { Application, Sprite, Container, Assets } from "pixi.js";
+import { Application, Sprite, Container, Assets, Ticker } from "pixi.js";
+import Player from "../Character/Player";
 
 class GameUI {
     private app: Application;
@@ -9,12 +10,14 @@ class GameUI {
     private inventorySize: number;
     private lifeTexturePath: string;
     private inventoryTexturePath: string;
+    private player: Player;
 
     /**
      * Crea un'interfaccia utente di gioco.
      * @param {Application} app - Istanza di PIXI Application.
      * @param {string} lifeTexturePath - Percorso dell'immagine per la vita.
      * @param {string} inventoryTexturePath - Percorso dell'immagine per gli slot dell'inventario.
+     * @param {Player} player - Istanza del player.
      * @param {number} maxLives - Numero massimo di vite.
      * @param {number} inventorySize - Numero di slot nell'inventario.
      */
@@ -22,6 +25,7 @@ class GameUI {
         app: Application,
         lifeTexturePath: string,
         inventoryTexturePath: string,
+        player: Player,
         maxLives: number = 3,
         inventorySize: number = 5
     ) {
@@ -30,9 +34,14 @@ class GameUI {
         this.inventoryTexturePath = inventoryTexturePath;
         this.maxLives = maxLives;
         this.inventorySize = inventorySize;
+        this.player = player;
         this.uiContainer = new Container();
         this.app.stage.addChild(this.uiContainer);
-        this.initUI();
+
+        // Assicuriamoci che l'UI venga inizializzata prima di eseguire qualsiasi altra operazione
+        this.initUI().then(() => {
+            console.log("UI Initialized");
+        });
     }
 
     /**
@@ -41,6 +50,7 @@ class GameUI {
     private async initUI() {
         await this.createLifeUI();
         await this.createInventoryUI();
+        this.update();
     }
 
     /**
@@ -52,17 +62,23 @@ class GameUI {
         for (let i = 0; i < this.maxLives; i++) {
             const lifeSprite = new Sprite(texture);
             lifeSprite.anchor.set(1, 0); // Ancoraggio in alto a destra
-
-            // Imposta manualmente la dimensione dello sprite
-            lifeSprite.width = 40;  // Imposta la larghezza desiderata
-            lifeSprite.height = 40; // Imposta l'altezza desiderata
-
-            // Posizionamento considerando la larghezza impostata
-            lifeSprite.position.set(this.app.screen.width - (i * (lifeSprite.width + 10)) - 20, 20);
-
-            lifeSprite.zIndex = 1;
+            lifeSprite.width = 40;
+            lifeSprite.height = 40;
             this.uiContainer.addChild(lifeSprite);
             this.lifeSprites.push(lifeSprite);
+        }
+        this.updateLifePositions();
+    }
+
+    /**
+     * Posiziona gli sprite delle vite rispetto alla telecamera del player.
+     */
+    private updateLifePositions() {
+        for (let i = 0; i < this.maxLives; i++) {
+            this.lifeSprites[i].position.set(
+                this.app.screen.width - (i * (this.lifeSprites[i].width + 10)) - 20,
+                20
+            );
         }
     }
 
@@ -71,16 +87,36 @@ class GameUI {
      */
     private async createInventoryUI() {
         const texture = await Assets.load(this.inventoryTexturePath);
-
-        const startX = (this.app.screen.width / 2) - ((this.inventorySize * (texture.width + 10)) / 2);
-
         for (let i = 0; i < this.inventorySize; i++) {
             const inventorySprite = new Sprite(texture);
-            inventorySprite.anchor.set(0.5, 1); // Ancoraggio in basso al centro
-            inventorySprite.position.set(startX + i * (inventorySprite.width + 10), this.app.screen.height - 20);
+            inventorySprite.anchor.set(0.5, 1);
             this.uiContainer.addChild(inventorySprite);
             this.inventorySprites.push(inventorySprite);
         }
+        this.updateInventoryPositions();
+    }
+
+    /**
+     * Posiziona gli sprite dell'inventario rispetto alla telecamera del player.
+     */
+    private updateInventoryPositions() {
+        const startX = (this.app.screen.width / 2) - ((this.inventorySize * 50) / 2);
+
+        for (let i = 0; i < this.inventorySize; i++) {
+            this.inventorySprites[i].position.set(startX + i * 50, this.app.screen.height - 20);
+        }
+    }
+
+    /**
+     * Aggiorna la posizione dell'UI rispetto al player.
+     */
+    public update() {
+        this.app.ticker.add(() => {
+            this.uiContainer.position.set(
+                this.player.getX() - this.app.screen.width / 2,
+                0
+            );
+        });
     }
 
     /**
@@ -88,8 +124,12 @@ class GameUI {
      * @param {number} lives - Numero di vite rimanenti.
      */
     public updateLives(lives: number) {
+        if (this.lifeSprites.length === 0) {
+            return;
+        }
+
         for (let i = 0; i < this.maxLives; i++) {
-            // this.lifeSprites[i].visible = i < lives;
+            this.lifeSprites[i].visible = i < lives;
         }
     }
 
@@ -99,21 +139,18 @@ class GameUI {
      * @param {number} slotIndex - Indice dello slot dell'inventario (0-based).
      */
     public async addItemToInventory(itemTexturePath: string, slotIndex: number) {
-        // if (slotIndex < 0 || slotIndex >= this.inventorySize) return;
+        if (!this.inventorySprites.length) {
+            return;
+        }
 
-        // const texture = await Assets.load(itemTexturePath);
-        // this.inventorySprites[slotIndex].texture = texture;
-    }
-
-    /**
-     * Rimuove un oggetto dallo slot dell'inventario ripristinando l'icona di default.
-     * @param {number} slotIndex - Indice dello slot dell'inventario (0-based).
-     */
-    public async removeItemFromInventory(slotIndex: number) {
         if (slotIndex < 0 || slotIndex >= this.inventorySize) return;
 
-        const texture = await Assets.load(this.inventoryTexturePath);
-        this.inventorySprites[slotIndex].texture = texture;
+        try {
+            const texture = await Assets.load(itemTexturePath);
+            this.inventorySprites[slotIndex].texture = texture;
+        } catch (error) {
+            console.error("Failed to load inventory item texture:", error);
+        }
     }
 
     /**
