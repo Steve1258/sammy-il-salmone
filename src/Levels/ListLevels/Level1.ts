@@ -30,7 +30,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 100,
                 height: 100,
-                texturePath: "/assets/Enemy/shark.png",
+                texturePath: "/assets/Enemy/Squalo.png",
                 object: new Enemy(player, app)
             },
             "Enemy2": {
@@ -38,7 +38,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 250,
                 height: 100,
-                texturePath: "/assets/Enemy/shark.png",
+                texturePath: "/assets/Enemy/Squalo.png",
                 object: new Enemy(player, app)
             },
             "C": {
@@ -48,7 +48,7 @@ class Level1 extends BaseLevel {
                 height: 350,
                 texturePath: "/assets/Colonne.png",
             },
-            G": {
+            "G": {
                 x: 300,
                 y: 150,
                 width: 100,
@@ -61,7 +61,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 150,
                 height: 300,
-                texturePath: "/assets/alga con bolle.png",
+                texturePath: "/assets/corallo_con_bolle.png",
 
             },
             "A2": {
@@ -69,7 +69,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 150,
                 height: 300,
-                texturePath: "/assets/alga con bolle.png",
+                texturePath: "/assets/corallo_rosso.png",
 
             },
         };
