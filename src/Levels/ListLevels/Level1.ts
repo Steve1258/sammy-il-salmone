@@ -47,7 +47,31 @@ class Level1 extends BaseLevel {
                 width: 150,
                 height: 350,
                 texturePath: "/assets/Colonne.png",
-            }
+            },
+            G": {
+                x: 300,
+                y: 150,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new Enemy(player, app)
+            },
+            "A1": {
+                x:300,
+                y: 200,
+                width: 150,
+                height: 300,
+                texturePath: "/assets/alga con bolle.png",
+
+            },
+            "A2": {
+                x:300,
+                y: 200,
+                width: 150,
+                height: 300,
+                texturePath: "/assets/alga con bolle.png",
+
+            },
         };
 
         // Genera il livello dalla matrice
