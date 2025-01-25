@@ -9,7 +9,7 @@ import Level1 from "./Levels/ListLevels/Level1";
 
 	const level = new Level1(app);
 	const player = new Player("/assets/bunny.png", app);
-	
+
 	app.ticker.add((time: Ticker) => {
 		player.update(time.deltaTime);
 	});

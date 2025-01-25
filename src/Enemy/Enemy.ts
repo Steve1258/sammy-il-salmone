@@ -1,4 +1,4 @@
-import { Sprite, Texture } from "pixi.js";
+import { Sprite } from "pixi.js";
 import GenericObject from "../Utils/GenericObject";
 
 interface EnemyParams {
