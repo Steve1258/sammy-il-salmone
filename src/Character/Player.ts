@@ -72,6 +72,38 @@ class Player {
         }
     }
 
+
+    /**
+  * Retrieves the player's current X-coordinate position.
+  * 
+  * @returns {number} The X position of the player sprite. 
+  *                   Returns `0` if the sprite is not initialized.
+  */
+    public getX(): number {
+        return this.sprite ? this.sprite.x : 0;
+    }
+
+    /**
+     * Retrieves the player's current Y-coordinate position.
+     * 
+     * @returns {number} The Y position of the player sprite. 
+     *                   Returns `0` if the sprite is not initialized.
+     */
+    public getY(): number {
+        return this.sprite ? this.sprite.y : 0;
+    }
+
+    /**
+     * Returns the player's sprite instance.
+     * 
+     * @returns {Sprite} The player sprite object.
+     * 
+     * @throws Will throw an error if the sprite is not initialized, due to the non-null assertion (`!`).
+     */
+    public getSprite(): Sprite {
+        return this.sprite!;
+    }
+
     /**
      * Handles key up events to stop movement.
      * @param event - The keyboard event.
@@ -95,11 +127,11 @@ class Player {
      */
     public update(delta: number) {
         if (!this.sprite) return;
-        
+
         if (this.velocity.x === 0 && this.velocity.y === 0) {
             this.velocity.y += this.gravity;
         }
-        else{
+        else {
             this.sprite.x += Math.sin(this.time) * this.floatingAmplitude;
             this.time += this.floatingSpeed;
             this.sprite.x -= Math.sin(this.time) * this.floatingAmplitude;

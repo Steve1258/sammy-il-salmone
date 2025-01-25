@@ -2,11 +2,12 @@ import { Application } from "pixi.js";
 import BaseLevel from "../BaseLevel";
 import LevelSprite from "../../Interfaces/LevelSprite";
 import Enemy from "../../Enemy/Enemy";
+import Player from "../../Character/Player";
 
 class Level1 extends BaseLevel {
     public platforms: LevelSprite[];
 
-    constructor(app: Application) {
+    constructor(app: Application, player: Player) {
         super(app);
         this.platforms = [
             {
