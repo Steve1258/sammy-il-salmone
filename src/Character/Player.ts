@@ -3,6 +3,11 @@ import Bullet from "../Bullet/Bullet";
 
 class Player {
     /**
+     * Number of lives the player has.
+     */
+    private life: number = 3;
+
+    /**
      * actual bullet instance
      */
     private bullet: Bullet | undefined;
@@ -170,6 +175,17 @@ class Player {
             case "ArrowRight":
                 this.velocity.x = 0;
                 break;
+        }
+    }
+
+    /**
+     * Reduces the player's life count and ends the game if the life count reaches zero.
+     * @returns {void}
+     */
+    public hit(): void {
+        this.life--;
+        if (this.life <= 0) {
+            console.log("Game Over");
         }
     }
 
