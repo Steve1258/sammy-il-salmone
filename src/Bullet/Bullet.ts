@@ -52,7 +52,6 @@ class Bullet {
 	private animate() {
 		this.app.ticker.add(() => {
 			if (!this.sprite) {
-				console.warn("Bullet sprite not initialized or removed from stage.");
 				return;  // Esci se lo sprite non è stato inizializzato correttamente
 			}
 
