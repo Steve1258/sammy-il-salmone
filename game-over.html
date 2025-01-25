@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Over Menu</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Press Start 2P", cursive;
+        background: url("bg.png") no-repeat center center fixed; /* Usa l'immagine caricata */
+        background-size: cover; /* L'immagine coprirà tutto lo sfondo */
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
+
+      .game-over-text {
+        font-size: 5em; /* Dimensione grande */
+        color: #ff0000; /* Rosso per il testo Game Over */
+        text-shadow: 0 0 5px #ff0000,
+          /* Primo livello di glow */ 0 0 10px #ff4500,
+          /* Glow arancio leggero */ 0 0 15px #ff6347; /* Glow rosso chiaro */
+        font-weight: bold;
+        text-transform: uppercase; /* Testo in maiuscolo */
+        margin-bottom: 50px; /* Spaziatura extra sotto */
+      }
+
+      .game-over-menu button {
+        font-family: "Press Start 2P", cursive;
+        background: #87ceeb; /* Colore di sfondo azzurro */
+        border: 3px solid transparent; /* Per un bordo chiaro e definito */
+        padding: 20px;
+        margin: 15px;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        width: 90%;
+        max-width: 400px;
+        transition: transform 0.2s, color 0.3s, box-shadow 0.3s;
+
+        /* Glow generico e pixelated */
+        box-shadow: 4px 4px 0 #000, 8px 8px 0 #000;
+      }
+
+      .game-over-menu button:hover {
+        transform: scale(1.05); /* Effetto di ingrandimento */
+      }
+
+      .game-over-menu button:active {
+        transform: scale(0.95); /* Effetto click */
+      }
+
+      /* Specifico per "Riprova" */
+      .game-over-menu button.retry {
+        color: #008b8b; /* Testo verde acqua scuro */
+        box-shadow: 4px 4px 0 #000, 8px 8px 0 #000, 0 0 15px 5px #20b2aa; /* Glow verde acqua chiaro */
+      }
+      .game-over-menu button.retry:hover {
+        color: #20b2aa; /* Verde acqua chiaro al passaggio del mouse */
+        box-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 0 0 20px 7px #20b2aa;
+      }
+
+      /* Specifico per "Torna al Menu" */
+      .game-over-menu button.menu {
+        color: #ffd700; /* Testo giallo */
+        box-shadow: 4px 4px 0 #000, 8px 8px 0 #000, 0 0 15px 5px #ffff00; /* Glow giallo */
+      }
+      .game-over-menu button.menu:hover {
+        color: #ffff00;
+        box-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 0 0 20px 7px #ffd700;
+      }
+
+      /* Specifico per "Esci" */
+      .game-over-menu button.exit {
+        color: #ff0000; /* Testo rosso */
+        box-shadow: 4px 4px 0 #000, 8px 8px 0 #000, 0 0 15px 5px #ff4500; /* Glow rosso */
+      }
+      .game-over-menu button.exit:hover {
+        color: #ff4500;
+        box-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 0 0 20px 7px #ff6347;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-over-text">GAME OVER</div>
+    <div class="game-over-menu">
+      <button class="retry" onclick="window.location.href='index.html'">
+        Riprova
+      </button>
+      <button class="menu" onclick="window.location.href='menu.html'">
+        Torna al Menu
+      </button>
+      <button class="exit" onclick="exitGame()">Esci</button>
+    </div>
+
+    <script>
+      function retryGame() {
+        alert("Riprova il gioco!");
+        // Logica per riavviare il gioco
+      }
+    </script>
+  </body>
+</html>

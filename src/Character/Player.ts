@@ -219,8 +219,7 @@ class Player {
      */
     private gameOver(): void {
         console.log("Game Over!");
-        this.sprite!.tint = 0xff0000; // Change player color to indicate game over
-        this.velocity = { x: 0, y: 0 }; // Stop movement
+        window.location.href = "/game-over.html";
     }
 
     /**

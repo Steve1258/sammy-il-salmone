@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sammy il Salmone</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Press Start 2P", cursive;
+        background: url("Pixel_art_underwater_sea_castle_background_smooth_gradient_transition_seamless_color_blending.png")
+          no-repeat center center fixed;
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .arcade-box {
+        background-color: #add8e6e6; /* Azzurro chiarissimo semitrasparente */
+        border-radius: 15px;
+        box-shadow: 0 0 20px #0000ff; /* Effetto luminoso azzurro */
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        padding: 30px;
+        position: relative; /* Necessario per posizionare i PNG negli angoli */
+      }
+
+      .arcade-box h1 {
+        font-size: 4em; /* Dimensione del testo aumentata */
+        color: #5b9bd5; /* Blu chiaro per la scritta */
+        text-shadow: 4px 4px 0 #000, 8px 8px 0 #333; /* Ombra scura per effetto 3D */
+        margin-bottom: 30px;
+      }
+
+      .arcade-box button {
+        font-family: "Press Start 2P", cursive; /* Font del titolo */
+        background: none; /* Rimosso lo sfondo */
+        color: #1e90ff; /* Testo blu */
+        border: 3px solid #0000ff; /* Bordo blu */
+        padding: 15px;
+        margin: 10px;
+        font-size: 1.2em; /* Testo dei pulsanti più grande */
+        cursor: pointer;
+        text-transform: uppercase;
+        display: block;
+        width: 80%; /* Pulsanti più larghi */
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+
+        /* Effetto pixelato */
+        box-shadow: 4px 4px 0 #000, 8px 8px 0 #000; /* Ombra nera per stile pixel */
+        transition: transform 0.2s, color 0.3s, box-shadow 0.3s;
+      }
+
+      .arcade-box button:hover {
+        color: #0000ff; /* Blu più chiaro al passaggio del mouse */
+        box-shadow: 2px 2px 0 #000, 4px 4px 0 #000;
+        transform: scale(1.05);
+      }
+
+      .arcade-box button:active {
+        color: #00008b; /* Blu scuro al click */
+        box-shadow: 1px 1px 0 #000, 2px 2px 0 #000;
+      }
+
+      /* Posizionamento PNG dei coralli negli angoli */
+      .coral-top-left {
+        position: absolute;
+        top: -40px;
+        left: -40px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .coral-top-right {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .coral-bottom-left {
+        position: absolute;
+        bottom: -40px;
+        left: -40px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .coral-bottom-right {
+        position: absolute;
+        bottom: -40px;
+        right: -40px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .sammy-icon {
+        width: 180px; /* Dimensioni maggiori */
+        height: 180px; /* Dimensioni maggiori */
+        display: block;
+        margin: 0 auto 20px auto; /* Centro sopra la scritta con spazio sotto */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="arcade-box">
+      <img
+        src="Pixel-art-game-supplies-red-coral-game-props-cute_377771_wh860.png"
+        alt="Corallo"
+        class="coral-top-left"
+        style="background: none"
+      />
+      <img
+        src="Pixel-art-game-supplies-red-coral-game-props-cute_377771_wh860.png"
+        alt="Corallo"
+        class="coral-top-right"
+        style="background: none"
+      />
+      <img
+        src="Pixel-art-game-supplies-red-coral-game-props-cute_377771_wh860.png"
+        alt="Corallo"
+        class="coral-bottom-left"
+        style="background: none"
+      />
+      <img
+        src="Pixel-art-game-supplies-red-coral-game-props-cute_377771_wh860.png"
+        alt="Corallo"
+        class="coral-bottom-right"
+        style="background: none"
+      />
+      <img
+        src="Sammy_il_salmone-modified.png"
+        alt="Sammy il Salmone"
+        class="sammy-icon"
+      />
+      <h1>Sammy il Salmone</h1>
+      <button onclick="window.location.href='/index.html'">Inizia</button>
+      <button onclick="showOptions()">Opzioni</button>
+      <button onclick="exitGame()">Esci</button>
+    </div>
+    <script>
+      function startGame() {
+        alert("Sammy è pronto per iniziare la sua avventura!");
+      }
+
+      function showOptions() {
+        alert("Configurazione delle opzioni...");
+      }
+
+      function exitGame() {
+        alert("A presto!");
+      }
+    </script>
+  </body>
+</html>
