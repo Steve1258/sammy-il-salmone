@@ -16,19 +16,60 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["", "", "", "", "", "", "", "", "", "", "Enemy2",],
-            ["", "", "", "", "", "", "G", "", "", "", "", "",],
-            ["C", "C", "A1", "C", "C", "C", "C", "C", "C", "C", "C", "C",],
+            ["Enemy1", "", "", "", "", "", "","","","","","Enemy3","","","","","","","","","","","","","","","","","Enemy5","","","","","","","","",],
+            ["", "", "", "", "", "Enemy2", "","","G","","","","","","","","G","G","","","","","Enemy4","","","","","","","","","Enemy6","","","","","",],
+            ["", "A1", "A2", "C","A1","A2","G","","A1","A2","c","G","A1","C","G","C","","","","A1","C","A1","A2","","A1","C","A2","","C","A1","A2","C","","C","G","G","C","",],
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
         new ParallaxBackground(app, [
+            "/assets/background_layer1.jpg",
             "/assets/background_layer1.jpg",
         ], { rows: 1, cols: 5 });
 
         // Definizione degli oggetti con il tipo LevelSprite
         const objectTypes: Record<string, LevelSprite> = {
             "Enemy2": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy1": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy3": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy4": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy5": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app)
+            },
+            "Enemy6": {
                 x: 300,
                 y: 200,
                 width: 250,

@@ -73,8 +73,6 @@ class Player {
      */
     private app: Application;
 
-
-
     /**
      * Creates an instance of Player.
      * @param {string} texturePath - Path to the player's texture asset.
@@ -100,6 +98,8 @@ class Player {
     private async init(texturePath: string): Promise<void> {
         const texture = await Assets.load(texturePath);
         this.sprite = new Sprite(texture);
+        this.sprite.width = 90;
+        this.sprite.height = 80;
         this.sprite.anchor.set(0.5);
         this.sprite.position.set(this.app.screen.width / 2, this.app.screen.height / 2);
         this.app.stage.addChild(this.sprite);
@@ -124,11 +124,11 @@ class Player {
                 break;
             case "ArrowLeft":
                 this.velocity.x = -this.speed;
-                if (this.sprite) this.sprite.scale.x = -1;
+                if (this.sprite) this.sprite.scale.x *= -1;
                 break;
             case "ArrowRight":
                 this.velocity.x = this.speed;
-                if (this.sprite) this.sprite.scale.x = 1;
+                if (this.sprite) this.sprite.scale.x *= 1;
                 break;
             case " ":
                 if (this.canshoot) {
