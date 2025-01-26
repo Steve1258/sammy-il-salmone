@@ -8,10 +8,6 @@ import GameAudio from './Music/GameAudio';
 	const app = new Application();
 	await app.init({ background: "#1099bb", resizeTo: window });
 	document.getElementById("pixi-container")!.appendChild(app.canvas);
-
-
-
-
 	// Crea un'istanza della musica di sottofondo
 	const gameAudio = new GameAudio();
 

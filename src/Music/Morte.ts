@@ -6,7 +6,7 @@ class MenuMusic {
     constructor() {
         // Caricamento della musica di sottofondo
         this.backgroundMusic = new Howl({
-            src: ['/assets/Music/menu.mp3'],  // Percorso del file audio
+            src: ['/assets/Music/Morte.mp3'],  // Percorso del file audio
             autoplay: true,      // Avvia automaticamente la riproduzione
             loop: true,          // Ripeti all'infinito la musica di sottofondo
             volume: 0.5          // Regola il volume (da 0.0 a 1.0)
