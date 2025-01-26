@@ -17,7 +17,7 @@ import GameAudio from './Music/GameAudio';
 	const inventoryTexturePath = "/assets/UI/inventory_square.png";
 	const player = new Player("/assets/character.png", app);
 	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath, player);
-	const level = new Level1(app, player, gameUI);
+	new Level1(app, player, gameUI);
 
 	app.ticker.add((time: Ticker) => {
 		player.update(time.deltaTime);
@@ -25,3 +25,18 @@ import GameAudio from './Music/GameAudio';
 	});
 
 })();
+const { app, BrowserWindow } = require('electron');
+
+function createWindow() {
+	let win = new BrowserWindow({
+		width: 800,
+		height: 600,
+		webPreferences: {
+			nodeIntegration: true
+		}
+	});
+
+	win.loadFile('index.html'); // Carica la tua pagina web
+}
+
+app.whenReady().then(createWindow);

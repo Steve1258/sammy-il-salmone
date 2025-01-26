@@ -1,4 +1,4 @@
-import { Container, Assets, Sprite, Application, Texture } from "pixi.js";
+import { Container, Assets, Sprite, Application } from "pixi.js";
 import LevelSprite from "../Interfaces/LevelSprite";
 
 // Classe base per tutti i livelli
