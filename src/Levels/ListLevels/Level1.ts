@@ -16,9 +16,9 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["Enemy2", "", "", "", ""],
-            ["", "", "", "", "", "", "G"],
-            ["", "C", "A1", "C",],
+            ["Enemy2", "", "", "", "","","","","","","",],
+            ["", "", "", "", "", "", "G","","","","","",],
+            ["C", "C", "A1", "C","C","C","C","C","C","C","C","C",],
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
