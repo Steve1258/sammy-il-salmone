@@ -4,19 +4,21 @@ import LevelSprite from "../../Interfaces/LevelSprite";
 import Enemy from "../../Enemy/Enemy";
 import Player from "../../Character/Player";
 import ParallaxBackground from "../../Utils/ParallaxBackground";
+import PowerUp from "../../PowerUp/PowerUp";
+import GameUI from "../../Utils/GameUI";
 
 class Level1 extends BaseLevel {
     private enemies: Enemy[] = [];
     public platforms: LevelSprite[] = [];
     private levelMatrix: string[][];
 
-    constructor(app: Application, player: Player) {
+    constructor(app: Application, player: Player, gameUI: GameUI) {
         super(app);
 
         this.levelMatrix = [
             ["", "", "", "", ""],
-            ["", "", "", "", ""],
-            ["", "C", "A1", "C", "G"],
+            ["", "", "", "", "", "", "G"],
+            ["", "C", "A1", "C",],
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
@@ -43,17 +45,18 @@ class Level1 extends BaseLevel {
             },
             "G": {
                 x: 300,
-                y: 150,
+                y: 100,
                 width: 100,
                 height: 100,
                 texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
             },
             "A1": {
                 x: 300,
                 y: 200,
                 width: 150,
                 height: 300,
-                texturePath: "/assets/corallo_di_due_colori.png",
+                texturePath: "/assets/Items/Coralli/corallo_di_due_colori.png",
 
             },
             "A2": {
@@ -61,7 +64,7 @@ class Level1 extends BaseLevel {
                 y: 200,
                 width: 150,
                 height: 300,
-                texturePath: "/assets/corallo_rosso.png",
+                texturePath: "/assets/Items/Coralli/corallo_rosso.png",
 
             },
         };

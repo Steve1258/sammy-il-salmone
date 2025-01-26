@@ -4,6 +4,11 @@ import Enemy from "../Enemy/Enemy";
 
 class Player {
     /**
+     * Flag to track if the player can shoot.
+     */
+    canshoot: boolean = false;
+
+    /**
      * List of enemies in the game.
      */
     private enemies: Enemy[] = [];
@@ -126,14 +131,17 @@ class Player {
                 if (this.sprite) this.sprite.scale.x = 1;
                 break;
             case " ":
-                if (!this.bullet) {
-                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
-                    this.bullet.shot();
+                if (this.canshoot) {
+                    if (!this.bullet) {
+                        this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
+                        this.bullet.shot();
+                    }
+                    if (!this.bullet.sprite) {
+                        this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
+                        this.bullet.shot();
+                    }
                 }
-                if (!this.bullet.sprite) {
-                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
-                    this.bullet.shot();
-                }
+
                 break;
         }
     }
