@@ -1,4 +1,4 @@
-import { Application, Sprite, Ticker } from "pixi.js";
+import { Application, Sprite } from "pixi.js";
 import GenericObject from "../Utils/GenericObject";
 import Player from "../Character/Player";
 
@@ -39,25 +39,32 @@ class Enemy extends GenericObject {
      */
     public chasePlayer(): void {
         this.app.ticker.add(() => {
-            if (!this.spriteEnemy) {
-                console.error("Nemico non inizializzato! chasePlayer");
-                return;
-            }
-            const playerX = this.player.getX();
-            const playerY = this.player.getY();
-            const enemyX = this.spriteEnemy.x;
-            const enemyY = this.spriteEnemy.y;
-            // Calcola la distanza usando il teorema di Pitagora: d = sqrt((x2 - x1)^2 + (y2 - y1)^2)
-            const distance = Math.sqrt(
-                Math.pow(playerX - enemyX, 2) + Math.pow(playerY - enemyY, 2)
-            );
+            try {
+                console.log("spriteEnemy", this.spriteEnemy);
+                if (!this.spriteEnemy) {
+                    console.error("Nemico non inizializzato! chasePlayer");
+                    return;
+                }
+                const playerX = this.player.getX();
+                const playerY = this.player.getY();
+                const enemyX = this.spriteEnemy.x;
+                const enemyY = this.spriteEnemy.y;
+                // Calcola la distanza usando il teorema di Pitagora: d = sqrt((x2 - x1)^2 + (y2 - y1)^2)
+                const distance = Math.sqrt(
+                    Math.pow(playerX - enemyX, 2) + Math.pow(playerY - enemyY, 2)
+                );
 
-            if (distance <= this.chaseDistance) {
-                this.moveTowardsPlayer(playerX, playerY);
+                if (distance <= this.chaseDistance) {
+                    this.moveTowardsPlayer(playerX, playerY);
+                }
+                if (Math.round(distance) <= 100) {
+                    this.player.hit();
+                }
             }
-            if (Math.round(distance) <= 100) {
-                this.player.hit();
+            catch (e) {
+                console.error("Error loading bullet texture:", e);
             }
+
         });
 
     }

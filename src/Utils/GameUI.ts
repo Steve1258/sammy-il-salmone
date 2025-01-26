@@ -90,6 +90,8 @@ class GameUI {
         for (let i = 0; i < this.inventorySize; i++) {
             const inventorySprite = new Sprite(texture);
             inventorySprite.anchor.set(0.5, 1);
+            inventorySprite.width = 50;
+            inventorySprite.height = 50;
             this.uiContainer.addChild(inventorySprite);
             this.inventorySprites.push(inventorySprite);
         }

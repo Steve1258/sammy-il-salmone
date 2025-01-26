@@ -1,7 +1,13 @@
 import { Sprite, Assets, Application } from "pixi.js";
 import Bullet from "../Bullet/Bullet";
+import Enemy from "../Enemy/Enemy";
 
 class Player {
+    /**
+     * List of enemies in the game.
+     */
+    private enemies: Enemy[] = [];
+
     /**
      * Flag to track if the player is currently invulnerable.
      */
@@ -103,10 +109,6 @@ class Player {
         window.addEventListener("keyup", (e) => this.onKeyUp(e));
     }
 
-    /**
-     * Handles key down events to update velocity and shooting.
-     * @param {KeyboardEvent} event - The keyboard event.
-     */
     private onKeyDown(event: KeyboardEvent): void {
         switch (event.key) {
             case "ArrowUp":
@@ -125,15 +127,30 @@ class Player {
                 break;
             case " ":
                 if (!this.bullet) {
-                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10);
+                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
                     this.bullet.shot();
                 }
                 if (!this.bullet.sprite) {
-                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10);
+                    this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
                     this.bullet.shot();
                 }
                 break;
         }
+    }
+    /**
+     * Restituisce la lista dei nemici attuali del player.
+     * @returns {Enemy[]} Lista di nemici.
+     */
+    public getEnemies(): Enemy[] {
+        return this.enemies;
+    }
+
+    /**
+     * Set the list of enemies in the game.
+     * @param {Enemy[]} enemiesList - Array of enemies in the game.
+     */
+    public setEnemies(enemiesList: Enemy[]): void {
+        this.enemies = enemiesList;
     }
 
     /**

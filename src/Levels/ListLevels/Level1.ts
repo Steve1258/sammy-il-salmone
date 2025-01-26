@@ -6,6 +6,7 @@ import Player from "../../Character/Player";
 import ParallaxBackground from "../../Utils/ParallaxBackground";
 
 class Level1 extends BaseLevel {
+    private enemies: Enemy[] = [];
     public platforms: LevelSprite[] = [];
     private levelMatrix: string[][];
 
@@ -13,9 +14,9 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["", "", "E", "", ""],
-            ["", "", "", "Enemy2", ""],
-            ["", "C", "", "C", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "C", "A1", "C", "G"],
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
@@ -25,14 +26,6 @@ class Level1 extends BaseLevel {
 
         // Definizione degli oggetti con il tipo LevelSprite
         const objectTypes: Record<string, LevelSprite> = {
-            "E": {
-                x: 300,
-                y: 200,
-                width: 100,
-                height: 100,
-                texturePath: "/assets/Enemy/Squalo.png",
-                object: new Enemy(player, app)
-            },
             "Enemy2": {
                 x: 300,
                 y: 200,
@@ -54,18 +47,17 @@ class Level1 extends BaseLevel {
                 width: 100,
                 height: 100,
                 texturePath: "/assets/Enemy/granchio.png",
-                object: new Enemy(player, app)
             },
             "A1": {
-                x:300,
+                x: 300,
                 y: 200,
                 width: 150,
                 height: 300,
-                texturePath: "/assets/corallo_con_bolle.png",
+                texturePath: "/assets/corallo_di_due_colori.png",
 
             },
             "A2": {
-                x:300,
+                x: 300,
                 y: 200,
                 width: 150,
                 height: 300,
@@ -73,9 +65,32 @@ class Level1 extends BaseLevel {
 
             },
         };
+        // Genera il livello dalla matrice
+        this.generateLevelFromMatrix(this.levelMatrix, objectTypes);
+
+        // Cattura tutti i nemici generati nel livello
+        // Collezioniamo tutti i nemici
+        this.enemies = Object.values(objectTypes)
+            .filter(obj => obj.object instanceof Enemy)
+            .map(obj => obj.object as Enemy);
+
+        player.setEnemies(this.enemies);
 
         // Genera il livello dalla matrice
         this.generateLevelFromMatrix(this.levelMatrix, objectTypes);
+    }
+
+    /**
+     * Rimuove un nemico dal livello.
+     * @param {Enemy} enemy - Il nemico da rimuovere.
+     */
+    public removeEnemy(enemy: Enemy): void {
+        this.enemies = this.enemies.filter(e => e !== enemy);
+        console.log("Nemico rimosso dal livello.");
+    }
+
+    public getEnemies(): Enemy[] {
+        return this.enemies;
     }
 }
 
