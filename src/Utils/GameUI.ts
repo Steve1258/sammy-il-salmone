@@ -1,4 +1,4 @@
-import { Application, Sprite, Container, Assets, Ticker } from "pixi.js";
+import { Application, Sprite, Container, Assets } from "pixi.js";
 import Player from "../Character/Player";
 
 class GameUI {

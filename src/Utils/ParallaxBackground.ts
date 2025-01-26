@@ -1,4 +1,4 @@
-import { Sprite, Application, Assets, Texture } from "pixi.js";
+import { Sprite, Application, Assets } from "pixi.js";
 
 class ParallaxBackground {
     private layers: Sprite[][];
