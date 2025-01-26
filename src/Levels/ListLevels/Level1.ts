@@ -16,9 +16,11 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["", "", "", "", "", "", "","","","","","Enemy3","","","","","","","","","","","","","","","","","Enemy5","","","","","","","","",],
-            ["", "", "", "", "G", "", "G2","","G3","","","","","","","","G4","G5","","","","","Enemy4","","","","","","","","","Enemy6","","","","","",],
-            ["", "A1", "A2", "C","A1","A2","G","","A1","A2","c","G","A1","C","","C","","","","A1","C","A1","A2","","A1","C","A2","","C","A1","A2","C","","C","G6","G7","C","",],
+            ["", "G2", "", "", "", "", "", "G3", "", "", "", "Enemy3", "", "", "", "", "", "", "", "", "", "", "", "", "G4", "", "", "", "Enemy5", "", "", "", "", "", "", "", "",],
+            ["", "", "", "", "", "", "G5", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Enemy4", "", "", "G6", "", "", "", "", "", "", "Enemy6", "", "", "", "", "",],
+            ["", "A1", "A2", "C", "A1", "A2", "", "G7", "", "A1", "A2", "c", "", "A1", "C", "", "C", "", "G8", "", "A1", "C", "A1", "A2", "", "A1", "C", "A2", "", "C", "A1", "A2", "C", "G9", "C", "", "C", "",],
+            ["", "", "", "", "G10", "", "", "", "", "", "", "", "", "", "", "", "", "", "G11", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G12", "", ""],
+            ["", "G13", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G14", "", "", "", "", "", "", "", "", "", "", "", "G15", "", "", ""]
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
@@ -37,13 +39,13 @@ class Level1 extends BaseLevel {
                 texturePath: "/assets/Enemy/Squalo.png",
                 object: new Enemy(player, app)
             },
-            "Enemy1": {
+            "B": {
                 x: 300,
                 y: 200,
                 width: 250,
                 height: 100,
-                texturePath: "/assets/Enemy/Squalo.png",
-                object: new Enemy(player, app)
+                texturePath: "/assets/bunny.png",
+                object: new Enemy(player, app, true)
             },
             "Enemy3": {
                 x: 300,
@@ -77,20 +79,20 @@ class Level1 extends BaseLevel {
                 texturePath: "/assets/Enemy/Squalo.png",
                 object: new Enemy(player, app)
             },
+            "Enemy7": {
+                x: 300,
+                y: 200,
+                width: 250,
+                height: 100,
+                texturePath: "/assets/Enemy/Squalo.png",
+                object: new Enemy(player, app, true)
+            },
             "C": {
                 x: 500,
                 y: 300,
                 width: 150,
                 height: 350,
                 texturePath: "/assets/Colonne.png",
-            },
-            "G": {
-                x: 300,
-                y: 100,
-                width: 100,
-                height: 100,
-                texturePath: "/assets/Enemy/granchio.png",
-                object: new PowerUp(player, app, gameUI)
             },
             "A1": {
                 x: 300,

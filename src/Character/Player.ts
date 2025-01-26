@@ -4,6 +4,21 @@ import Enemy from "../Enemy/Enemy";
 
 class Player {
     /**
+     * Durata dello sprint in millisecondi.
+     */
+    private sprintDuration: number = 3000; // 3 secondi
+
+    /**
+     * Flag per verificare se il giocatore sta sprintando.
+     */
+    private isSprinting: boolean = false;
+
+    /**
+     * Velocità normale del giocatore.
+     */
+    private normalSpeed: number;
+
+    /**
      * Flag to track if the player can shoot.
      */
     canshoot: boolean = false;
@@ -74,13 +89,20 @@ class Player {
     private app: Application;
 
     /**
+     * Velocità aumentata durante lo sprint.
+     */
+    private sprintSpeed: number;
+
+    /**
      * Creates an instance of Player.
      * @param {string} texturePath - Path to the player's texture asset.
      * @param {Application} app - PIXI application instance.
      */
     constructor(texturePath: string, app: Application) {
         this.app = app;
-        this.speed = 5;
+        this.normalSpeed = 5;
+        this.sprintSpeed = 15;
+        this.speed = this.normalSpeed;
         this.velocity = { x: 0, y: 0 };
         this.gravity = 0.5;
         this.floatingAmplitude = 10;
@@ -144,7 +166,33 @@ class Player {
                 }
 
                 break;
+            case "Shift":
+                this.startSprint();
+                break;
         }
+    }
+    /**
+ * Inizia lo sprint aumentando temporaneamente la velocità del giocatore.
+ */
+    private startSprint(): void {
+        if (this.isSprinting) return; // Se già sprinta, non fare nulla
+
+        console.log("Sprint attivato!");
+        this.isSprinting = true;
+        this.speed = this.sprintSpeed;
+
+        setTimeout(() => {
+            this.stopSprint();
+        }, this.sprintDuration);
+    }
+
+    /**
+     * Termina lo sprint e ripristina la velocità normale.
+     */
+    private stopSprint(): void {
+        console.log("Sprint terminato!");
+        this.isSprinting = false;
+        this.speed = this.normalSpeed;
     }
     /**
      * Restituisce la lista dei nemici attuali del player.

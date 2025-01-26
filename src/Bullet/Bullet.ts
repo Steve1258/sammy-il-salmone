@@ -52,6 +52,8 @@ class Bullet {
 		}
 	}
 
+
+
 	/**
 	 * Gestisce il movimento del proiettile e controlla collisioni.
 	 */
@@ -73,17 +75,30 @@ class Bullet {
 	}
 
 	/**
-	 * Controlla se il proiettile ha colpito un nemico.
-	 */
+ * Controlla se il proiettile ha colpito un nemico.
+ */
 	private checkCollisionWithEnemies() {
 		if (!this.sprite) return;
 
 		for (const enemy of this.enemies) {
 			const enemySprite = enemy.getSprite();
+
 			if (enemySprite && this.isColliding(this.sprite, enemySprite)) {
-				this.destroyBullet();
-				this.destroyEnemy(enemy);
-				break;
+				if (enemy.getWinning()) {
+					if (!enemy.isInvulnerable) {
+						enemy.lifeTotal--;
+
+						if (enemy.lifeTotal === 0) {
+							window.location.href = "/win-page.html";
+						} else {
+							enemy.startInvulnerability();
+						}
+					}
+				} else {
+					this.destroyBullet();
+					this.destroyEnemy(enemy);
+					break;
+				}
 			}
 		}
 	}

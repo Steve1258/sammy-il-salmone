@@ -14,13 +14,32 @@ class Enemy extends GenericObject {
     private chaseDistance: number;
     private speed: number;
     private app: Application;
+    public lifeTotal: number = 2;
+    private winning: boolean;
+    public isInvulnerable: boolean = false;
+    private invulnerabilityDuration: number = 2000;
 
-    constructor(player: Player, app: Application) {
+    constructor(player: Player, app: Application, winning: boolean = false) {
         super();
         this.player = player;
         this.chaseDistance = 300;
         this.speed = 1.85;
         this.app = app;
+        this.winning = winning;
+    }
+
+    public getWinning(): boolean {
+        return this.winning;
+    }
+
+    public startInvulnerability(): void {
+        this.isInvulnerable = true;
+        console.log("Il nemico è ora invulnerabile!");
+
+        setTimeout(() => {
+            this.isInvulnerable = false;
+            console.log("Il nemico non è più invulnerabile.");
+        }, this.invulnerabilityDuration);
     }
 
     /**
