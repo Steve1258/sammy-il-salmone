@@ -24,6 +24,7 @@ class Level1 extends BaseLevel {
         // Specifica una griglia di 1x5 sfondi consecutivi
         new ParallaxBackground(app, [
             "/assets/background_layer1.jpg",
+            "/assets/background_layer1.jpg",
         ], { rows: 1, cols: 5 });
 
         // Definizione degli oggetti con il tipo LevelSprite
