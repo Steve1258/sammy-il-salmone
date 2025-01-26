@@ -2,6 +2,7 @@ import { Application, Ticker } from "pixi.js";
 import Player from "./Character/Player";
 import Level1 from "./Levels/ListLevels/Level1";
 import GameUI from "./Utils/GameUI";
+import GameAudio from './Music/GameAudio';
 
 (async () => {
 	const app = new Application();
@@ -10,6 +11,12 @@ import GameUI from "./Utils/GameUI";
 
 
 
+
+	// Crea un'istanza della musica di sottofondo
+	const gameAudio = new GameAudio();
+
+	// Avvia la musica quando il gioco è pronto
+	gameAudio.play();
 	const lifeTexturePath = "/assets/UI/heart.png";
 	const inventoryTexturePath = "/assets/UI/inventory_square.png";
 	const player = new Player("/assets/character.png", app);

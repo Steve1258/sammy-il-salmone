@@ -40,7 +40,6 @@ class Enemy extends GenericObject {
     public chasePlayer(): void {
         this.app.ticker.add(() => {
             try {
-                console.log("spriteEnemy", this.spriteEnemy);
                 if (!this.spriteEnemy) {
                     console.error("Nemico non inizializzato! chasePlayer");
                     return;
@@ -62,7 +61,7 @@ class Enemy extends GenericObject {
                 }
             }
             catch (e) {
-                console.error("Error loading bullet texture:", e);
+
             }
 
         });

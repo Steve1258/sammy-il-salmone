@@ -63,8 +63,7 @@ class PowerUp extends GenericObject {
     private collectPowerUp(): void {
         if (this.sprite && this.app.stage.children.includes(this.sprite)) {
             this.app.stage.removeChild(this.sprite);
-            this.sprite.destroy();
-            this.sprite = undefined;
+            this.sprite.visible = false;
             this.collected = true;
 
             // Rimuove il power-up dalla lista dei power-up del player, se presente

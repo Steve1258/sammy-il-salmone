@@ -1,11 +1,12 @@
 import { Sprite, Application, Assets } from "pixi.js";
 import Player from "../Character/Player";
 import Enemy from "../Enemy/Enemy";
-
+import { Howl } from 'howler';
 class Bullet {
 	public sprite: Sprite | undefined;
 	private speed: number;
 	private app: Application;
+	private shotSound: Howl;
 	private player: Player;
 	private texturePath: string;
 	private maxDistance: number;
@@ -19,7 +20,13 @@ class Bullet {
 		this.speed = speed;
 		this.maxDistance = maxDistance;
 		this.initialX = 0;
-		this.enemies = enemies || [];  // Evita null o undefined
+		this.enemies = enemies || []
+
+		this.shotSound = new Howl({
+			src: ['/assets/Music/Sparo3.mp3'],
+			volume: 2
+		});
+
 	}
 
 	/**
@@ -33,7 +40,7 @@ class Bullet {
 			this.sprite.scale.set(0.1);
 			this.initialX = this.player.getX();
 			this.sprite.position.set(this.initialX, this.player.getY());
-
+			this.shotSound.play();
 			// Determina la direzione del player e imposta la velocità di conseguenza
 			const direction = this.player.getDirection();
 			this.speed = direction === "left" ? -Math.abs(this.speed) : Math.abs(this.speed);

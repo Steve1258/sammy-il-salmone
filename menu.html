@@ -148,7 +148,7 @@
       <button onclick="showOptions()">Opzioni</button>
       <button onclick="exitGame()">Esci</button>
     </div>
-    <script>
+    <script type="module" lang="ts" setup>
       function startGame() {
         alert("Sammy è pronto per iniziare la sua avventura!");
       }
@@ -161,5 +161,6 @@
         alert("A presto!");
       }
     </script>
+    <script type="module" src="./src/menu.ts"></script>
   </body>
 </html>

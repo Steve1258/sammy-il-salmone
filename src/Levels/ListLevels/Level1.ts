@@ -16,7 +16,7 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["", "", "", "", ""],
+            ["Enemy2", "", "", "", ""],
             ["", "", "", "", "", "", "G"],
             ["", "C", "A1", "C",],
         ];
@@ -94,6 +94,16 @@ class Level1 extends BaseLevel {
 
     public getEnemies(): Enemy[] {
         return this.enemies;
+    }
+
+    public removePowerUp(powerUp: PowerUp): void {
+        for (let i = 0; i < this.platforms.length; i++) {
+            if (this.platforms[i].object === powerUp) {
+                this.platforms.splice(i, 1);
+                console.log("PowerUp rimosso dal livello.");
+                break;
+            }
+        }
     }
 }
 

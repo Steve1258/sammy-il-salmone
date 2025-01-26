@@ -137,6 +137,7 @@ class Player {
                         this.bullet.shot();
                     }
                     if (!this.bullet.sprite) {
+
                         this.bullet = new Bullet(this.app, this, "/assets/Object/Bullet/bullet_1.png", 10, this.enemies);
                         this.bullet.shot();
                     }
