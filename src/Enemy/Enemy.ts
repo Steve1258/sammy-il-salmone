@@ -19,7 +19,7 @@ class Enemy extends GenericObject {
         super();
         this.player = player;
         this.chaseDistance = 300;
-        this.speed = 2;
+        this.speed = 1.85;
         this.app = app;
     }
 

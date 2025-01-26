@@ -16,9 +16,9 @@ class Level1 extends BaseLevel {
         super(app);
 
         this.levelMatrix = [
-            ["Enemy1", "", "", "", "", "", "","","","","","Enemy3","","","","","","","","","","","","","","","","","Enemy5","","","","","","","","",],
-            ["", "", "", "", "", "Enemy2", "","","G","","","","","","","","G","G","","","","","Enemy4","","","","","","","","","Enemy6","","","","","",],
-            ["", "A1", "A2", "C","A1","A2","G","","A1","A2","c","G","A1","C","G","C","","","","A1","C","A1","A2","","A1","C","A2","","C","A1","A2","C","","C","G","G","C","",],
+            ["", "", "", "", "", "", "","","","","","Enemy3","","","","","","","","","","","","","","","","","Enemy5","","","","","","","","",],
+            ["", "", "", "", "G", "", "G2","","G3","","","","","","","","G4","G5","","","","","Enemy4","","","","","","","","","Enemy6","","","","","",],
+            ["", "A1", "A2", "C","A1","A2","G","","A1","A2","c","G","A1","C","","C","","","","A1","C","A1","A2","","A1","C","A2","","C","A1","A2","C","","C","G6","G7","C","",],
         ];
 
         // Specifica una griglia di 1x5 sfondi consecutivi
@@ -107,6 +107,118 @@ class Level1 extends BaseLevel {
                 height: 300,
                 texturePath: "/assets/Items/Coralli/corallo_rosso.png",
 
+            },
+            "G2": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G3": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G4": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G5": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G6": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G7": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G8": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G9": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G10": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G11": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G12": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G13": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G14": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
+            },
+            "G15": {
+                x: 300,
+                y: 100,
+                width: 100,
+                height: 100,
+                texturePath: "/assets/Enemy/granchio.png",
+                object: new PowerUp(player, app, gameUI)
             },
         };
         // Genera il livello dalla matrice
