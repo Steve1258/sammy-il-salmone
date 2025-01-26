@@ -110,10 +110,10 @@
   <body>
     <div class="win-text">Hai Vinto!</div>
     <div class="win-menu">
-      <button class="continue" onclick="continueGame()">
-        <span>Continua</span>
+      <button class="continue" onclick="window.location.href='index.html'">
+        <span>Rigioca</span>
       </button>
-      <button class="menu" onclick="window.location.href = './index.html'">
+      <button class="menu" onclick="window.location.href = './menu.html'">
         <span>Torna al Menu</span>
       </button>
       <button class="exit" onclick="exitGame()">
@@ -133,8 +133,7 @@
       }
 
       function exitGame() {
-        alert("Grazie per aver giocato! Esci dal gioco.");
-        // Logica per uscire dal gioco
+        window.location.href = 'about:blank';
       }
     </script>
     <script type="module" src="./src/vittoria.ts"></script>
