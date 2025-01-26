@@ -18,25 +18,9 @@ import GameAudio from './Music/GameAudio';
 	const player = new Player("/assets/character.png", app);
 	const gameUI = new GameUI(app, lifeTexturePath, inventoryTexturePath, player);
 	new Level1(app, player, gameUI);
-
 	app.ticker.add((time: Ticker) => {
 		player.update(time.deltaTime);
 		gameUI.updateLives(player.life);
 	});
 
 })();
-const { app, BrowserWindow } = require('electron');
-
-function createWindow() {
-	let win = new BrowserWindow({
-		width: 800,
-		height: 600,
-		webPreferences: {
-			nodeIntegration: true
-		}
-	});
-
-	win.loadFile('index.html'); // Carica la tua pagina web
-}
-
-app.whenReady().then(createWindow);
