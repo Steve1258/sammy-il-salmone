@@ -2,6 +2,7 @@ import { Application, Sprite } from "pixi.js";
 import GenericObject from "../Utils/GenericObject";
 import Player from "../Character/Player";
 import GameUI from "../Utils/GameUI";
+import { Howl } from 'howler';
 
 class PowerUp extends GenericObject {
     private player: Player;
@@ -9,10 +10,15 @@ class PowerUp extends GenericObject {
     private gameUI: GameUI;
     private sprite: Sprite | undefined;
     private collected: boolean = false;
+    private powerUpSound: Howl;
 
     constructor(player: Player, app: Application, gameUI: GameUI) {
         super();
         this.player = player;
+        this.powerUpSound = new Howl({
+            src: ['/assets/Music/PowerUp.mp3'],
+            volume: 3
+        });
         this.app = app;
         this.gameUI = gameUI;
     }
@@ -31,6 +37,7 @@ class PowerUp extends GenericObject {
             if (this.isColliding(this.player.getSprite(), this.sprite)) {
                 console.log("PowerUp raccolto!");
                 this.gameUI.addItemToInventory("/assets/Object/Bullet/bullet_1.png", 0);
+
                 this.player.canshoot = true;
                 this.collectPowerUp();
 
@@ -65,7 +72,7 @@ class PowerUp extends GenericObject {
             this.app.stage.removeChild(this.sprite);
             this.sprite.visible = false;
             this.collected = true;
-
+            this.powerUpSound.play();
             // Rimuove il power-up dalla lista dei power-up del player, se presente
             if (this.app.stage.getChildByName("level")) {
                 const level = this.app.stage.getChildByName("level") as any;

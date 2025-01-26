@@ -235,7 +235,6 @@ class Level1 extends BaseLevel {
         player.setEnemies(this.enemies);
 
         // Genera il livello dalla matrice
-        this.generateLevelFromMatrix(this.levelMatrix, objectTypes);
     }
 
     /**
