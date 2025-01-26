@@ -1,161 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hai Vinto!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Press Start 2P', cursive;
-            background: url('win.png') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Press Start 2P", cursive;
+        background: url("./public/assets/win.webp") no-repeat center center
+          fixed;
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
 
-        .win-text {
-            font-size: 4em;
-            color: #ffd700; /* Oro */
-            text-shadow: 
-                0 0 10px #ffd700, 
-                0 0 20px #ffec8b, 
-                0 0 30px #ffffe0; /* Glow ridotto */
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-        }
+      .win-text {
+        font-size: 4em;
+        color: #fff780; /* Oro */
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffec8b, 0 0 30px #ffffe0; /* Glow ridotto */
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 50px;
+      }
 
-        .win-menu button {
-            font-family: 'Press Start 2P', cursive;
-            border: 3px solid currentColor; /* Bordo del colore del testo */
-            padding: 20px;
-            margin: 15px;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 90%;
-            max-width: 400px;
+      .win-menu button {
+        font-family: "Press Start 2P", cursive;
+        border: 3px solid currentColor; /* Bordo del colore del testo */
+        padding: 20px;
+        margin: 15px;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        width: 90%;
+        max-width: 400px;
 
-            /* Sfondo trasparente più visibile */
-            background: rgba(0, 0, 0, 0.5); /* Default trasparente nero */
-            background-blend-mode: overlay;
+        /* Sfondo trasparente più visibile */
+        background: rgba(0, 0, 0, 0.5); /* Default trasparente nero */
+        background-blend-mode: overlay;
 
-            /* Glow iniziale ancora più evidente */
-            box-shadow: 
-                0 0 25px currentColor, 
-                0 0 50px currentColor, 
-                0 0 75px currentColor;
-            transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
-        }
+        /* Glow iniziale ancora più evidente */
+        box-shadow: 0 0 25px currentColor, 0 0 50px currentColor,
+          0 0 75px currentColor;
+        transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s,
+          color 0.3s;
+      }
 
-        .win-menu button span {
-            text-shadow: 
-                0 0 20px currentColor, 
-                0 0 40px currentColor, 
-                0 0 60px currentColor; /* Glow sulle scritte */
-        }
+      .win-menu button span {
+        text-shadow: 0 0 20px currentColor, 0 0 40px currentColor,
+          0 0 60px currentColor; /* Glow sulle scritte */
+      }
 
-        .win-menu button:hover {
-            background: rgba(255, 255, 255, 0.4); /* Sfondo più visibile al passaggio del mouse */
-            transform: scale(1.2); /* Ingrandimento più marcato */
-            box-shadow: 
-                0 0 40px currentColor, 
-                0 0 80px currentColor, 
-                0 0 120px currentColor; /* Glow ancora più intenso */
-        }
+      .win-menu button:hover {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.4
+        ); /* Sfondo più visibile al passaggio del mouse */
+        transform: scale(1.2); /* Ingrandimento più marcato */
+        box-shadow: 0 0 40px currentColor, 0 0 80px currentColor,
+          0 0 120px currentColor; /* Glow ancora più intenso */
+      }
 
-        .win-menu button:active {
-            transform: scale(0.95); /* Leggero ridimensionamento al clic */
-            background: rgba(255, 255, 255, 0.6); /* Sfondo più evidente al clic */
-        }
+      .win-menu button:active {
+        transform: scale(0.95); /* Leggero ridimensionamento al clic */
+        background: rgba(255, 255, 255, 0.6); /* Sfondo più evidente al clic */
+      }
 
-        /* Stile specifico per "Continua" */
-        .continue {
-            color: #32cd32; /* Verde lime */
-            background: rgba(50, 205, 50, 0.5); /* Verde trasparente */
-            box-shadow: 
-                0 0 25px #32cd32, 
-                0 0 50px #32cd32, 
-                0 0 75px #32cd32;
-        }
-        .continue span {
-            text-shadow: 
-                0 0 25px #32cd32, 
-                0 0 50px #32cd32, 
-                0 0 75px #32cd32; /* Glow sul testo verde */
-        }
+      /* Stile specifico per "Continua" */
+      .continue {
+        color: #32cd32; /* Verde lime */
+        background: rgba(50, 205, 50, 0.5); /* Verde trasparente */
+        box-shadow: 0 0 25px #32cd32, 0 0 50px #32cd32, 0 0 75px #32cd32;
+      }
+      .continue span {
+        text-shadow: 0 0 25px #32cd32, 0 0 50px #32cd32, 0 0 75px #32cd32; /* Glow sul testo verde */
+      }
 
-        /* Stile specifico per "Torna al Menu" */
-        .menu {
-            color: #ffd700; /* Giallo oro */
-            background: rgba(255, 215, 0, 0.5); /* Giallo trasparente */
-            box-shadow: 
-                0 0 25px #ffd700, 
-                0 0 50px #ffd700, 
-                0 0 75px #ffd700;
-        }
-        .menu span {
-            text-shadow: 
-                0 0 25px #ffd700, 
-                0 0 50px #ffd700, 
-                0 0 75px #ffd700; /* Glow sul testo giallo */
-        }
+      /* Stile specifico per "Torna al Menu" */
+      .menu {
+        color: #ffd700; /* Giallo oro */
+        background: rgba(255, 215, 0, 0.5); /* Giallo trasparente */
+        box-shadow: 0 0 25px #ffd700, 0 0 50px #ffd700, 0 0 75px #ffd700;
+      }
+      .menu span {
+        text-shadow: 0 0 25px #ffd700, 0 0 50px #ffd700, 0 0 75px #ffd700; /* Glow sul testo giallo */
+      }
 
-        /* Stile specifico per "Esci" */
-        .exit {
-            color: #ff4500; /* Rosso acceso */
-            background: rgba(255, 69, 0, 0.5); /* Rosso trasparente */
-            box-shadow: 
-                0 0 25px #ff4500, 
-                0 0 50px #ff4500, 
-                0 0 75px #ff4500;
-        }
-        .exit span {
-            text-shadow: 
-                0 0 25px #ff4500, 
-                0 0 50px #ff4500, 
-                0 0 75px #ff4500; /* Glow sul testo rosso */
-        }
+      /* Stile specifico per "Esci" */
+      .exit {
+        color: #ff4500; /* Rosso acceso */
+        background: rgba(255, 69, 0, 0.5); /* Rosso trasparente */
+        box-shadow: 0 0 25px #ff4500, 0 0 50px #ff4500, 0 0 75px #ff4500;
+      }
+      .exit span {
+        text-shadow: 0 0 25px #ff4500, 0 0 50px #ff4500, 0 0 75px #ff4500; /* Glow sul testo rosso */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="win-text">Hai Vinto!</div>
     <div class="win-menu">
-        <button class="continue" onclick="continueGame()">
-            <span>Continua</span>
-        </button>
-        <button class="menu" onclick="returnToMenu()">
-            <span>Torna al Menu</span>
-        </button>
-        <button class="exit" onclick="exitGame()">
-            <span>Esci</span>
-        </button>
+      <button class="continue" onclick="continueGame()">
+        <span>Continua</span>
+      </button>
+      <button class="menu" onclick="window.location.href = './index.html'">
+        <span>Torna al Menu</span>
+      </button>
+      <button class="exit" onclick="exitGame()">
+        <span>Esci</span>
+      </button>
     </div>
 
     <script>
-        function continueGame() {
-            alert("Continua il gioco!");
-            // Logica per continuare il gioco
-        }
+      function continueGame() {
+        alert("Continua il gioco!");
+        // Logica per continuare il gioco
+      }
 
-        function returnToMenu() {
-            alert("Torna al menu principale!");
-            // Logica per tornare al menu principale
-        }
+      function returnToMenu() {
+        alert("Torna al menu principale!");
+        // Logica per tornare al menu principale
+      }
 
-        function exitGame() {
-            alert("Grazie per aver giocato! Esci dal gioco.");
-            // Logica per uscire dal gioco
-        }
+      function exitGame() {
+        alert("Grazie per aver giocato! Esci dal gioco.");
+        // Logica per uscire dal gioco
+      }
     </script>
-</body>
+    <script type="module" src="./src/vittoria.ts"></script>
+  </body>
 </html>
